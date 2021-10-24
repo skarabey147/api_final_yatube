@@ -39,9 +39,6 @@ class Post(models.Model):
         blank=True
     )
 
-    class Meta:
-        ordering = ['-pub_date']
-
     def __str__(self):
         return self.text
 
@@ -66,7 +63,6 @@ class Comment(models.Model):
     )
 
     class Meta:
-        ordering = ['-created']
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
 
@@ -90,7 +86,7 @@ class Follow(models.Model):
 
     class Meta:
         constraints = (models.UniqueConstraint(
-            fields=['follower', 'following'],
+            fields=['user', 'following'],
             name='unique_follow'
         ),)
 
